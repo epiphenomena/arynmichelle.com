@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryn Michelle - Architect of Sound & Story</title>
+    <meta name="description" content="The official website for Aryn Michelle, an architect of sound and story. Explore her latest music, upcoming tour dates, and connect with her journey.">
+
+    <meta property="og:title" content="Aryn Michelle - The Digital Prelude">
+    <meta property="og:description" content="Discover the sonic architecture of Aryn Michelle.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.arynmichelle.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Lora:wght@400&family=Syne:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav container">
+            <a href="#" class="nav-logo" aria-label="Aryn Michelle Home">ARYN MICHELLE</a>
+            <div class="nav-links">
+                <a href="#discography">Music</a>
+                <a href="#events">Tour</a>
+                <a href="#connect">Connect</a>
+            </div>
+            <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+                <div class="hamburger"></div>
+            </button>
+        </nav>
+    </header>
+
+    <div class="mobile-nav-overlay">
+        <nav>
+            <a href="#discography">Music</a>
+            <a href="#events">Tour</a>
+            <a href="#connect">Connect</a>
+        </nav>
+    </div>
+
+    <main>
+
+        <section id="hero" class="hero-section">
+            <canvas id="particle-canvas"></canvas>
+            <div class="hero-content">
+                <h1 class="hero-title">ARYN MICHELLE</h1>
+                <p class="hero-tagline">Architect of Sound & Story</p>
+            </div>
+            <div class="scroll-indicator">
+                <div class="pulsating-dot"></div>
+            </div>
+        </section>
+
+        <section id="discography" class="discography-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Latest Works</h2>
+                <div class="carousel-wrapper">
+                    <button class="carousel-arrow prev" aria-label="Previous release">&lt;</button>
+                    <div class="releases-carousel">
+                        <div class="release-card animate-on-scroll">
+                            <img src="https://picsum.photos/seed/album1/500/500" alt="Album cover for The Real Thing" class="release-cover">
+                            <div class="release-info">
+                                <h3>The Real Thing</h3>
+                                <span class="release-type">ALBUM</span>
+                                <p>A journey through raw emotion and intricate sonic landscapes.</p>
+                                <div class="listen-links">
+                                    <a href="#" aria-label="Listen on Spotify"><i class="fa-brands fa-spotify"></i></a>
+                                    <a href="#" aria-label="Listen on Apple Music"><i class="fa-brands fa-apple"></i></a>
+                                    <a href="#" aria-label="Listen on YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="release-card animate-on-scroll">
+                            <img src="https://picsum.photos/seed/album2/500/500" alt="Single cover for Echoes in the Static" class="release-cover">
+                            <div class="release-info">
+                                <h3>Echoes in the Static</h3>
+                                <span class="release-type">SINGLE</span>
+                                <p>A haunting melody that finds clarity in the noise of modern life.</p>
+                                <div class="listen-links">
+                                    <a href="#" aria-label="Listen on Spotify"><i class="fa-brands fa-spotify"></i></a>
+                                    <a href="#" aria-label="Listen on Apple Music"><i class="fa-brands fa-apple"></i></a>
+                                    <a href="#" aria-label="Listen on YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="release-card animate-on-scroll">
+                            <img src="https://picsum.photos/seed/album3/500/500" alt="Album cover for Blueprint" class="release-cover">
+                            <div class="release-info">
+                                <h3>Blueprint</h3>
+                                <span class="release-type">ALBUM</span>
+                                <p>Crafting new worlds with sound as the foundational element.</p>
+                                <div class="listen-links">
+                                    <a href="#" aria-label="Listen on Spotify"><i class="fa-brands fa-spotify"></i></a>
+                                    <a href="#" aria-label="Listen on Apple Music"><i class="fa-brands fa-apple"></i></a>
+                                    <a href="#" aria-label="Listen on YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="release-card animate-on-scroll">
+                            <img src="https://picsum.photos/seed/album4/500/500" alt="Single cover for Golden Hour" class="release-cover">
+                            <div class="release-info">
+                                <h3>Golden Hour</h3>
+                                <span class="release-type">SINGLE</span>
+                                <p>A warm, shimmering track for moments of quiet reflection.</p>
+                                <div class="listen-links">
+                                    <a href="#" aria-label="Listen on Spotify"><i class="fa-brands fa-spotify"></i></a>
+                                    <a href="#" aria-label="Listen on Apple Music"><i class="fa-brands fa-apple"></i></a>
+                                    <a href="#" aria-label="Listen on YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow next" aria-label="Next release">&gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="events-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">On The Horizon</h2>
+                <div class="timeline">
+                    <div class="event-item animate-on-scroll">
+                        <div class="event-date">
+                            <span class="month">OCT</span>
+                            <span class="day">23</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>The Echo Lounge</h4>
+                            <p>Dallas, TX</p>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Get Tickets</a>
+                    </div>
+                    <div class="event-item animate-on-scroll">
+                        <div class="event-date">
+                            <span class="month">NOV</span>
+                            <span class="day">05</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Antone's Nightclub</h4>
+                            <p>Austin, TX</p>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Get Tickets</a>
+                    </div>
+                    <div class="event-item animate-on-scroll">
+                         <div class="event-date">
+                            <span class="month">NOV</span>
+                            <span class="day">12</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Warehouse Live</h4>
+                            <p>Houston, TX</p>
+                        </div>
+                        <a href="#" class="btn btn-secondary">Sold Out</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="connect" class="connect-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Join the Story</h2>
+                <div class="social-grid">
+                    <a href="#" aria-label="Aryn Michelle on Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Aryn Michelle on TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" aria-label="Aryn Michelle on YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Aryn Michelle on Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" aria-label="Aryn Michelle on X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                <form class="email-signup">
+                    <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Aryn Michelle.</p>
+            <p>Site by Gemini</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
