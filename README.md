@@ -27,7 +27,7 @@ Inspiration for landing page:
 <https://snd.click/SP0193>
 
 
-Of course. As a digital architect and brand storyteller, I see a website not as a page, but as a space—an environment where a story unfolds. For Aryn Michelle, we will not simply build a landing page; we will construct a *Digital Prelude*. The core concept is **"Sonic Architecture,"** where music is a tangible, explorable structure. The user's journey is one of discovery, moving through rooms of sound and story, guided by light and motion.
+For Aryn Michelle, we will not simply build a landing page; we will construct a *Digital Prelude*. The core concept is **"Sonic Architecture,"** where music is a tangible, explorable structure. The user's journey is one of discovery, moving through rooms of sound and story, guided by light and motion.
 
 The design is conceived mobile-first, ensuring the most intimate and tactile experience is flawless. Every transition is a beat, every scroll a measure.
 
@@ -119,6 +119,3 @@ This is the architectural plan for the landing page, from top to bottom.
 #### **Footer**
 
 * **Layout:** Minimalist and clean. A single line with `© 2025 Aryn Michelle.` on the left, and maybe a "Site by..." credit on the right. All text is small and in a dimmer `off-white` (`#888888`).
-
----
-This detailed blueprint provides the complete vision for the *Digital Prelude*. It’s a design that prioritizes feeling and narrative, built upon a solid, modern, and technically feasible foundation of HTML and CSS, brought to life with subtle and powerful JavaScript-driven animations. It's a world for Aryn Michelle's music to live in.
