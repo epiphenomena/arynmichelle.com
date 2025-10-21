@@ -1,0 +1,298 @@
+/* --- General Body & Root Styles --- */
+:root {
+    --bg-color: #F8F9FA;
+    --text-color: #212529;
+    --primary-color: #007BFF;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #6C757D;
+    --secondary-hover-color: #5a6268;
+    --danger-color: #E53E3E;
+    --danger-hover-color: #C53030;
+    --border-color: #CED4DA;
+    --input-bg-color: #FFFFFF;
+    --footer-color: #E9ECEF;
+    --toast-bg: #28A745;
+    --toast-text: #FFFFFF;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding-top: 60px; /* Space for the sticky header */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Header & Navigation --- */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--footer-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.sticky-header nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s ease;
+}
+
+.sticky-header nav a:hover {
+    color: var(--text-color);
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* --- Main Content & Form Container --- */
+main {
+    padding: 2rem;
+}
+
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* --- Form Elements Styling --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.markdown-example {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f1f3f5;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+.markdown-example h3 {
+    margin-top: 0;
+    font-size: 1rem;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+.markdown-example pre {
+    background-color: #e9ecef;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+.markdown-example code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* --- Input Groups (Checkboxes & Radios) --- */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.checkbox-label, .radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 0.5rem;
+    width: 1em;
+    height: 1em;
+}
+
+/* --- Media (File) Upload --- */
+.media-upload {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.media-preview {
+    flex-shrink: 0;
+    width: 150px;
+    height: 100px;
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    overflow: hidden;
+}
+
+.media-preview-file {
+    padding: 0 1rem;
+    width: auto;
+    min-width: 200px;
+    height: 44px;
+    justify-content: flex-start;
+}
+
+.media-preview-asset {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-preview-placeholder {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+}
+
+.media-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-input + label {
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.btn-primary:not(:disabled):hover {
+    background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+}
+.btn-primary:disabled {
+    background-color: #9fccff;
+    border-color: #9fccff;
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    border-color: #cbd5e0;
+}
+.btn-secondary:hover {
+    background-color: #cbd5e0;
+    border-color: #a0aec0;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: #fff;
+    border-color: var(--danger-color);
+}
+.btn-danger:hover {
+    background-color: var(--danger-hover-color);
+    border-color: var(--danger-hover-color);
+}
+
+
+/* --- Footer --- */
+footer {
+    height: 40px;
+    background-color: var(--footer-color);
+    margin-top: 2rem;
+}
+
+/* --- Toast Notification --- */
+#toast {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--toast-bg);
+    color: var(--toast-text);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: top 0.5s ease-in-out;
+    z-index: 2000;
+}
+
+#toast.show {
+    top: 20px;
+}
+
+
