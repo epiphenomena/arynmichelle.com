@@ -1,0 +1,36 @@
+{
+    "social_links": [
+        {
+            "type": "spotify",
+            "url": "#"
+        },
+        {
+            "type": "youtube",
+            "url": "#"
+        },
+        {
+            "type": "youtube_music",
+            "url": "#"
+        },
+        {
+            "type": "x",
+            "url": "#"
+        },
+        {
+            "type": "instagram",
+            "url": "#"
+        },
+        {
+            "type": "tiktok",
+            "url": "#"
+        },
+        {
+            "type": "facebook",
+            "url": "#"
+        },
+        {
+            "type": "apple_music",
+            "url": "#"
+        }
+    ]
+}

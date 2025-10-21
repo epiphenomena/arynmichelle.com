@@ -1,5 +1,5 @@
 <?php
-$title = "Settings - Quality Custom Displays";
+$title = "Settings";
 
 // Include image utility functions
 require_once __DIR__ . '/../image_utils.php';
@@ -16,8 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $settings['site-title'] = $_POST['site-title'];
     $settings['site-description'] = $_POST['site-description'];
     $settings['contact-email'] = $_POST['contact-email'];
-    $settings['phone-number'] = $_POST['phone-number'];
-    $settings['street-address'] = $_POST['street-address'];
 
     // Handle social media card image upload
     $new_image_path = handle_image_upload('social-media-card', 'social-card-image', 'social media card');
@@ -71,16 +69,6 @@ include '../header.php';
             <div class="form-group">
                 <label for="contact-email">Contact Email</label>
                 <input type="email" id="contact-email" name="contact-email" placeholder="info@qualitycustomdisplays.com" value="<?php echo htmlspecialchars($settings['contact-email']); ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="phone-number">Phone Number</label>
-                <input type="text" id="phone-number" name="phone-number" placeholder="(555) 123-4567" value="<?php echo htmlspecialchars($settings['phone-number']); ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="street-address">Street Address</label>
-                <input type="text" id="street-address" name="street-address" placeholder="123 Main Street, City, State 12345" value="<?php echo htmlspecialchars($settings['street-address']); ?>">
             </div>
 
             <div class="form-group">

@@ -1,21 +1,20 @@
-<?php include '../page_header.php'; ?>
+<?php 
+include '../page_header.php'; 
+
+// Include Parsedown for converting markdown to HTML
+require_once '../Parsedown.php';
+
+// Read content from markdown file
+$content_file = '../data/about.md';
+$content = file_exists($content_file) ? file_get_contents($content_file) : '# About Page\n\nDefault content.';
+
+// Convert markdown to HTML
+$parsedown = new Parsedown();
+$parsed_content = $parsedown->text($content);
+?>
 
 <main>
-    <h1>Page Title (e.g., Music)</h1>
-
-    <p>This is a sample paragraph for your content pages. It uses the refined, simplified CSS to ensure a consistent look and feel with the home page. You can easily replace this with your own text, images, and other content as you build out the rest of your site.</p>
-
-    <h2>Section Heading</h2>
-    <p>Here's another paragraph to demonstrate the text styling. Links, like <a href="#">this one</a>, will stand out from the main body text. The overall design is clean, modern, and focused on readability.</p>
-
-    <h3>Subsection Heading</h3>
-    <p>For more detailed organization, you can use H3 headings. They provide a clear hierarchy for your content without being visually overwhelming.</p>
-
-    <ul>
-        <li>This is an example of an unordered list item.</li>
-        <li>Each item is clearly separated and easy to read.</li>
-        <li>They are useful for things like album tracklists or feature lists.</li>
-    </ul>
+    <?php echo $parsed_content; ?>
 </main>
 
 <?php include '../page_footer.php'; ?>

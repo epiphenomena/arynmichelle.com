@@ -1,0 +1,24 @@
+{
+    "quadrants": [
+        {
+            "title": "MUSIC",
+            "subtitle": "albums, EPs, streaming, charts",
+            "link": "about/"
+        },
+        {
+            "title": "FEATURES",
+            "subtitle": "videos, interviews, podcasts",
+            "link": "about/"
+        },
+        {
+            "title": "ABOUT/CONTACT",
+            "subtitle": "info, bio, booking",
+            "link": "about/"
+        },
+        {
+            "title": "RESOURCES",
+            "subtitle": "playlists, songwriting",
+            "link": "about/"
+        }
+    ]
+}
