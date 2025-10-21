@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aryn Michelle | Official Website</title>
     <style>
+        :root {
+            --color-background: #000;
+            --color-text-primary: #fff;
+            --color-text-secondary: rgba(255, 255, 255, 0.9);
+            --color-overlay: rgba(0, 0, 0, 0.5);
+            --color-border: rgba(255, 255, 255, 0.4);
+            --color-border-mobile: rgba(255, 255, 255, 0.2);
+            --color-quadrant-hover: rgba(255, 255, 255, 0.05);
+            --color-center-box-bg: rgba(20, 20, 20, 0.85);
+            --color-shadow: rgba(0, 0, 0, 0.5);
+            --color-social-hover: #aaa;
+        }
+
         /* Basic Reset */
         * {
             margin: 0;
@@ -18,8 +31,8 @@
             width: 100vw;
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #000;
-            color: #fff;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
         }
 
         /* Background Image Container */
@@ -29,17 +42,18 @@
             background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            filter: grayscale(80%); /* Brightened the background */
+            filter: grayscale(80%);
             position: relative;
-            display: flex; /* Use flex for layout */
-            flex-direction: column; /* Stack children vertically */
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in;
         }
 
         /* Dark Overlay */
         .overlay {
             position: absolute;
             inset: 0;
-            background-color: rgba(0, 0, 0, 0.5); /* Lightened the overlay */
+            background-color: var(--color-overlay);
             z-index: 1;
         }
 
@@ -61,22 +75,25 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            color: #fff;
+            background-color: var(--color-border-mobile);
+            color: var(--color-text-primary);
             text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.4); /* Brighter border */
+            border: 1px solid var(--color-border);
             position: relative;
             transition: background-color 0.3s ease-in-out;
             z-index: 10;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
         }
 
-        /* Specific borders to create the cross effect */
-        .quadrant-link:nth-child(1) { border-width: 0 1px 1px 0; }
-        .quadrant-link:nth-child(2) { border-width: 0 0 1px 0; }
-        .quadrant-link:nth-child(3) { border-width: 0 1px 0 0; }
-        .quadrant-link:nth-child(4) { border-width: 0; }
+        /* Staggered animation delays */
+        .quadrant-link:nth-child(1) { border-width: 0 1px 1px 0; animation-delay: 0.6s; }
+        .quadrant-link:nth-child(2) { border-width: 0 0 1px 0; animation-delay: 0.7s; }
+        .quadrant-link:nth-child(3) { border-width: 0 1px 0 0; animation-delay: 0.9s; }
+        .quadrant-link:nth-child(4) { border-width: 0; animation-delay: 1.1s; }
 
         .quadrant-link:hover {
-            background-color: rgba(255, 255, 255, 0.05);
+            background-color: var(--color-quadrant-hover);
         }
 
         .quadrant-content {
@@ -94,7 +111,7 @@
         }
 
         .quadrant-subtitle {
-            color: rgba(255, 255, 255, 0.9); /* Brighter subtitle */
+            color: var(--color-text-secondary);
             margin-top: 0.5rem;
         }
 
@@ -106,17 +123,19 @@
             transform: translate(-50%, -50%);
             z-index: 20;
             pointer-events: none; /* Let clicks pass through */
+            opacity: 0;
+            animation: fadeInScaleUp 0.8s ease-out 0.2s forwards;
         }
 
         .center-box-content {
-            background-color: rgba(20, 20, 20, 0.85);
+            background-color: var(--color-center-box-bg);
             padding: 2.5rem 4rem; /* Increased padding */
             text-align: center;
             border-radius: 0.5rem;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             pointer-events: auto; /* Enable clicks on content */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Added drop shadow */
+            box-shadow: 0 10px 25px var(--color-shadow);
         }
 
         .center-title {
@@ -134,17 +153,34 @@
         }
 
         .social-links a {
-            color: #fff;
+            color: var(--color-text-primary);
             transition: color 0.2s ease-in-out;
         }
 
         .social-links a:hover {
-            color: #aaa;
+            color: var(--color-social-hover);
         }
 
         .social-links svg {
             width: 1.5rem; /* 24px */
             height: 1.5rem; /* 24px */
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
 
         /* Mobile Responsive Styles */
@@ -162,20 +198,18 @@
                 width: 100%;
                 flex-shrink: 0; /* Prevent it from shrinking */
                 padding: 2rem 0;
+                animation: fadeIn 0.8s ease-out 0.2s forwards; /* Simpler mobile animation */
             }
             .center-box-content {
                  background-color: transparent;
                  padding: 0;
                  backdrop-filter: none;
                  -webkit-backdrop-filter: none;
+                 box-shadow: none;
             }
             .quadrant-link {
                 border: 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                 flex-grow: 1; /* Make sections fill the remaining height */
-            }
-            .quadrant-link:last-child {
-                border-bottom: 0;
             }
             .quadrant-title {
                 font-size: 1.875rem; /* 30px */
@@ -249,6 +283,4 @@
 
 </body>
 </html>
-
-
 
