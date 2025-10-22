@@ -1,12 +1,16 @@
 <?php
 $title = "Home Page Quadrants - Admin";
 
+// Include image utility functions
+require_once __DIR__ . '/../image_utils.php';
+
 // Define the home data file path
 $home_file = __DIR__ . '/../../data/home.json';
 
 // Load home data from JSON file
 $home_data = json_decode(file_get_contents($home_file), true);
 $quadrants = $home_data['quadrants'];
+$background_image = $home_data['background_image'] ?? '/media/home-bg.jpg';
 
 // Process form submission if POST data is present
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,6 +21,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'subtitle' => $_POST['subtitle'][$i] ?? '',
             'link' => $_POST['link'][$i] ?? ''
         ];
+    }
+    
+    // Handle background image upload
+    $new_image_path = handle_image_upload('background_image', 'home-bg', 'home page background');
+    if ($new_image_path) {
+        // Remove old image if it exists and is different from the new one
+        if (!empty($home_data['background_image']) && $home_data['background_image'] !== $new_image_path) {
+            remove_image_file($home_data['background_image']);
+        }
+        $home_data['background_image'] = $new_image_path;
+    } elseif (isset($_POST['remove-background-image']) && $_POST['remove-background-image'] === '1') {
+        // Remove existing background image if requested
+        if (!empty($home_data['background_image']) && $home_data['background_image'] !== '/media/home-bg.jpg') {
+            remove_image_file($home_data['background_image']);
+            $home_data['background_image'] = '/media/home-bg.jpg'; // Set to default
+        }
     }
     
     $home_data['quadrants'] = $quadrants;
@@ -33,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Refresh data after saving
     $home_data = json_decode(file_get_contents($home_file), true);
     $quadrants = $home_data['quadrants'];
+    $background_image = $home_data['background_image'] ?? '/media/home-bg.jpg';
 }
 
 include '../header.php';
@@ -40,10 +61,33 @@ include '../header.php';
 
 <main>
     <div class="container">
-        <h1>Home Page Quadrants</h1>
-        <p>Manage the content for the four quadrants on the home page.</p>
+        <h1>Home Page Settings</h1>
+        <p>Manage the content and appearance of the home page.</p>
 
-        <form method="post" id="quadrants-form">
+        <form method="post" enctype="multipart/form-data" id="main-form">
+            <div class="form-group">
+                <h2>Background Image</h2>
+                <label for="background_image">Upload New Background Image</label>
+                <input type="file" id="background_image" name="background_image" accept="image/*">
+                <small class="form-help">Upload an image for the home page background (JPG, PNG, GIF). Recommended size: 1920x1080 pixels or larger.</small>
+
+                <?php if (!empty($background_image) && $background_image !== '/media/home-bg.jpg'): ?>
+                    <div class="image-preview">
+                        <p>Current background image:</p>
+                        <img src="<?php echo $background_image; ?>" alt="Current background" class="background-preview" style="max-width: 300px; max-height: 200px;">
+                        <div>
+                            <button type="submit" name="remove-background-image" value="1" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure you want to remove this background image?')">Remove Image</button>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="image-preview">
+                        <p>Current background image: Using default</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <h2>Quadrant Content</h2>
             <?php foreach ($quadrants as $index => $quadrant): ?>
             <div class="form-group quadrant-group">
                 <h3>Quadrant <?php echo $index + 1; ?></h3>
@@ -68,8 +112,6 @@ include '../header.php';
                 </div>
             </div>
             <?php endforeach; ?>
-            
-            <button type="submit" class="btn btn-primary">Save Quadrants</button>
         </form>
     </div>
 </main>

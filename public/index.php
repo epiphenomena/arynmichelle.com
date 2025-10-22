@@ -5,9 +5,22 @@
 $settings_file = __DIR__ . '/data/settings.json';
 $settings = json_decode(file_get_contents($settings_file), true);
 
+// Load home page data
+$home_file = __DIR__ . '/data/home.json';
+$home_data = json_decode(file_get_contents($home_file), true);
+
 // Set default values if settings are not available
 $site_title = $settings['site-title'] ?? 'Aryn Michelle';
 $twitter_image = $settings['social-media-card'] ?? '/media/social-card-image.jpg';
+$background_image = $home_data['background_image'] ?? 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop';
+
+// Load and modify CSS to include the dynamic background
+$css_content = file_get_contents('./home.css');
+$css_content = str_replace(
+    "background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop');",
+    "background-image: url('" . addslashes($background_image) . "');",
+    $css_content
+);
 ?>
 
 <head>
@@ -15,7 +28,7 @@ $twitter_image = $settings['social-media-card'] ?? '/media/social-card-image.jpg
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($site_title); ?></title>
     <style>
-        <?php echo file_get_contents('./home.css'); ?>
+        <?php echo $css_content; ?>
     </style>
     <meta property="og:image" content="<?php echo htmlspecialchars($twitter_image); ?>">
 </head>

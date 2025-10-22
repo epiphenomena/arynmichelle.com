@@ -37,14 +37,12 @@ include '../header.php';
         <h1>About Page Content</h1>
         <p>Edit the content for the about page using Markdown syntax.</p>
 
-        <form method="post" id="about-form">
+        <form method="post" id="main-form">
             <div class="form-group">
                 <label for="about_content">Content (Markdown)</label>
                 <textarea id="about_content" name="about_content" rows="20" class="markdown-editor"><?php echo htmlspecialchars($about_content); ?></textarea>
                 <small class="form-help">Use Markdown syntax for formatting. <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown Cheat Sheet</a></small>
             </div>
-            
-            <button type="submit" class="btn btn-primary">Save Content</button>
         </form>
         
         <div class="form-group" style="margin-top: 2rem;">

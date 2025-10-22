@@ -23,28 +23,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($social_data['social_links'][$index_to_delete])) {
             array_splice($social_data['social_links'], $index_to_delete, 1);
         }
-    } elseif (isset($_POST['update_links'])) {
-        // Update existing links
-        $updated_links = [];
-        $count = count($_POST['type'] ?? []);
-        for ($i = 0; $i < $count; $i++) {
-            $updated_links[] = [
-                'type' => $_POST['type'][$i] ?? 'spotify',
-                'url' => $_POST['url'][$i] ?? ''
-            ];
+    } else {
+        // Handle updates to existing links and reordering
+        // First, get the original social links to update
+        $original_links = $social_data['social_links'];
+
+        // Update the values for each link based on the original index
+        foreach ($original_links as $index => $link) {
+            if (isset($_POST['type_original'][$index])) {
+                $original_links[$index]['type'] = $_POST['type_original'][$index];
+            }
+            if (isset($_POST['url_original'][$index])) {
+                $original_links[$index]['url'] = $_POST['url_original'][$index];
+            }
         }
-        $social_data['social_links'] = $updated_links;
+
+        // If reordering information is provided, reorder the updated links according to that order
+        if (isset($_POST['order']) && !empty($_POST['order'])) {
+            $ordered_original_indices = explode(',', $_POST['order']);
+            $new_social_links = [];
+
+            foreach ($ordered_original_indices as $original_index) {
+                $original_index = (int)$original_index;
+                if (isset($original_links[$original_index])) {
+                    $new_social_links[] = $original_links[$original_index];
+                }
+            }
+
+            $social_data['social_links'] = $new_social_links;
+        } else {
+            // No reordering, just use the updated links in original order
+            $social_data['social_links'] = $original_links;
+        }
     }
-    
+
     // Ensure data directory exists
     $data_dir = __DIR__ . '/../../data/';
     if (!is_dir($data_dir)) {
         mkdir($data_dir, 0755, true);
     }
-    
+
     // Save social data to JSON file
     file_put_contents($social_file, json_encode($social_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-    
+
     // Refresh data after saving
     $social_data = json_decode(file_get_contents($social_file), true);
     $social_links = $social_data['social_links'];
@@ -91,19 +112,19 @@ $social_types = [
         </div>
 
         <!-- Edit existing social links form -->
-        <form method="post" id="social-links-form">
+        <form method="post" id="main-form">
             <h3>Manage Social Links</h3>
             <p>Drag and drop to reorder. The order in the list will be the order displayed on the site.</p>
-            
+
             <?php if (!empty($social_links)): ?>
                 <div id="sortable-links" class="social-links-container">
                     <?php foreach ($social_links as $index => $link): ?>
-                    <div class="social-link-item" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background-color: #f9f9f9; display: flex; gap: 1rem; align-items: start;">
+                    <div class="social-link-item" data-original-index="<?php echo $index; ?>" id="item_<?php echo $index; ?>" style="border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; background-color: #f9f9f9; display: flex; gap: 1rem; align-items: start;">
                         <div style="flex: 1;">
                             <div class="form-row">
                                 <div class="form-col">
                                     <label for="type_<?php echo $index; ?>">Social Media Type</label>
-                                    <select id="type_<?php echo $index; ?>" name="type[<?php echo $index; ?>]">
+                                    <select id="type_<?php echo $index; ?>" name="type_original[<?php echo $index; ?>]">
                                         <?php foreach ($social_types as $type => $label): ?>
                                             <option value="<?php echo $type; ?>" <?php echo ($link['type'] == $type) ? 'selected' : ''; ?>><?php echo htmlspecialchars($label); ?></option>
                                         <?php endforeach; ?>
@@ -111,7 +132,7 @@ $social_types = [
                                 </div>
                                 <div class="form-col" style="flex: 2;">
                                     <label for="url_<?php echo $index; ?>">URL</label>
-                                    <input type="url" id="url_<?php echo $index; ?>" name="url[<?php echo $index; ?>]" value="<?php echo htmlspecialchars($link['url']); ?>" placeholder="https://...">
+                                    <input type="text" id="url_<?php echo $index; ?>" name="url_original[<?php echo $index; ?>]" value="<?php echo htmlspecialchars($link['url']); ?>" placeholder="https://...">
                                 </div>
                             </div>
                         </div>
@@ -122,12 +143,10 @@ $social_types = [
                     </div>
                     <?php endforeach; ?>
                 </div>
+                <input type="hidden" name="order" id="order-input" value="">
+                <input type="hidden" name="update_links" value="1">
             <?php else: ?>
                 <p>No social links added yet.</p>
-            <?php endif; ?>
-            
-            <?php if (!empty($social_links)): ?>
-                <button type="submit" name="update_links" class="btn btn-primary">Save Changes</button>
             <?php endif; ?>
         </form>
     </div>
@@ -166,40 +185,41 @@ $social_types = [
 </style>
 
 <script>
-// Simple drag-and-drop reordering (without jQuery)
+// Drag-and-drop reordering with dynamic form name updates
 document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('sortable-links');
     if (!container) return;
-    
+
     let draggedItem = null;
-    
+
     container.querySelectorAll('.social-link-item').forEach(item => {
         item.setAttribute('draggable', true);
-        
+
         item.addEventListener('dragstart', function(e) {
             draggedItem = this;
             setTimeout(() => this.style.opacity = '0.7', 0);
         });
-        
+
         item.addEventListener('dragend', function() {
             this.style.opacity = '1';
             draggedItem = null;
         });
     });
-    
+
     container.addEventListener('dragover', function(e) {
         e.preventDefault();
         this.style.backgroundColor = '#f0f0f0';
     });
-    
+
     container.addEventListener('dragleave', function() {
         this.style.backgroundColor = '';
     });
-    
+
     container.addEventListener('drop', function(e) {
         e.preventDefault();
         this.style.backgroundColor = '';
-        
+        document.getElementById("save-btn").disabled = false;
+
         if (draggedItem) {
             const afterElement = getDragAfterElement(container, e.clientY);
             if (afterElement == null) {
@@ -209,20 +229,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-    
+
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll('.social-link-item:not(:hover)')];
-        
+
         return draggableElements.reduce((closest, child) => {
             const box = child.getBoundingClientRect();
             const offset = y - box.top - box.height / 2;
-            
+
             if (offset < 0 && offset > closest.offset) {
                 return { offset: offset, element: child };
             } else {
                 return closest;
             }
         }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    // Update the order input before form submission
+    const mainForm = document.getElementById('main-form');
+    if (mainForm) {
+        mainForm.addEventListener('submit', function(e) {
+            updateOrderInput();
+        });
+    }
+
+    function updateOrderInput() {
+        const items = container.querySelectorAll('.social-link-item');
+        const order = [];
+
+        items.forEach((item) => {
+            // Add the original index in the new visual order
+            order.push(item.dataset.originalIndex);
+        });
+
+        document.getElementById('order-input').value = order.join(',');
     }
 });
 </script>
