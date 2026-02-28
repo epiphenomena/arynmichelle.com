@@ -1,21 +1,29 @@
 <?php
 include '../page_header.php';
 
-// Include Parsedown for converting markdown to HTML
-require_once '../Parsedown.php';
-
-// Read content from markdown file
-$content_file = '../data/resources.md';
-$content = file_exists($content_file) ? file_get_contents($content_file) : '# Resources Page\n\nDefault content.';
-
-// Convert markdown to HTML
-$parsedown = new Parsedown();
-$parsed_content = $parsedown->text($content);
+// Read content from JSON file
+$resources_file = '../data/resources.json';
+$resources_data = file_exists($resources_file) ? json_decode(file_get_contents($resources_file), true) : [];
 ?>
 
 <main>
-
-    <?php echo $parsed_content; ?>
+    <div class="resources-container">
+        <?php foreach ($resources_data as $index => $section): ?>
+            <section class="resource-section">
+                <div class="resource-image">
+                    <img src="<?php echo htmlspecialchars($section['image']); ?>" alt="<?php echo htmlspecialchars($section['title']); ?>">
+                </div>
+                <div class="resource-info">
+                    <h2><?php echo htmlspecialchars($section['title']); ?></h2>
+                    <ul class="resource-links">
+                        <?php foreach ($section['links'] as $link): ?>
+                            <li><a href="<?php echo htmlspecialchars($link['url']); ?>" target="_blank"><?php echo htmlspecialchars($link['text']); ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </section>
+        <?php endforeach; ?>
+    </div>
 </main>
 
 <?php include '../page_footer.php'; ?>

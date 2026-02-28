@@ -2,6 +2,6 @@ Options -Indexes
 
 AuthType Basic
 AuthName "Restricted Area"
-AuthUserFile /home/timlawles/qcdisplays.com/.htpasswd
+AuthUserFile /home/aryncalhoun/htpasswd
 Require valid-user
 

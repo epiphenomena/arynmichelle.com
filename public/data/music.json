@@ -1,0 +1,27 @@
+{
+    "latest_album": {
+        "title": "BLOODLINE",
+        "description": "A concept album of the lives of the women in the genealogy of Jesus. ",
+        "cover_image": "/media/latest-album-cover.jpg",
+        "youtube_url": "https://youtube.com/...",
+        "spotify_url": "https://spotify.com/...",
+        "apple_music_url": "https://apple.com/..."
+    },
+    "previous_projects": [
+        {
+            "title": "PARIAH",
+            "link": "https://arynmichelle.bandcamp.com/album/pariah",
+            "cover_image": "/media/pariah.jpg"
+        },
+        {
+            "title": "The Realest Thing",
+            "link": "https://arynmichelle.bandcamp.com/album/the-realest-thing",
+            "cover_image": "/media/realest_thing.jpg"
+        },
+        {
+            "title": "Depth",
+            "link": "https://arynmichelle.bandcamp.com/album/depth",
+            "cover_image": "/media/depth.jpg"
+        }
+    ]
+}

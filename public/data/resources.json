@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Songwriting",
+        "image": "/media/songwriting.jpg",
+        "links": [
+            {"text": "Songwriting Resources", "url": "#"},
+            {"text": "Workshops", "url": "#"},
+            {"text": "Coaching", "url": "#"}
+        ]
+    },
+    {
+        "title": "Playlists",
+        "image": "/media/playlists.jpg",
+        "links": [
+            {"text": "Aryn Michelle Selection", "url": "#"},
+            {"text": "Faith-Based Songwriters", "url": "#"},
+            {"text": "Inspirational Tracks", "url": "#"}
+        ]
+    },
+    {
+        "title": "Store",
+        "image": "/media/store.jpg",
+        "links": [
+            {"text": "Digital Albums", "url": "#"},
+            {"text": "Merchandise", "url": "https://arynmichelle.bandcamp.com/merch"},
+            {"text": "Sheet Music", "url": "#"}
+        ]
+    }
+]

@@ -1,0 +1,17 @@
+[
+    {
+        "title": "UTR Media Interview",
+        "image": "/media/feature-utr.jpg",
+        "link": "https://utrmedia.com/..."
+    },
+    {
+        "title": "Live at Irving Bible Church",
+        "image": "/media/feature-live.jpg",
+        "link": "https://youtube.com/..."
+    },
+    {
+        "title": "Songwriting Podcast",
+        "image": "/media/feature-podcast.jpg",
+        "link": "#"
+    }
+]

@@ -1,22 +1,28 @@
 <?php
 include '../page_header.php';
 
-// Include Parsedown for converting markdown to HTML
-require_once '../Parsedown.php';
-
-// Read content from markdown file
-$content_file = '../data/features.md';
-$content = file_exists($content_file) ? file_get_contents($content_file) : '# Features Page
-
-Default content.';
-
-// Convert markdown to HTML
-$parsedown = new Parsedown();
-$parsed_content = $parsedown->text($content);
+// Read content from JSON file
+$features_file = '../data/features.json';
+$features_data = file_exists($features_file) ? json_decode(file_get_contents($features_file), true) : [];
 ?>
 
 <main>
-    <?php echo $parsed_content; ?>
+    <section class="previous-projects">
+        <h1>Features & Interviews</h1>
+        <div class="projects-grid">
+            <?php foreach ($features_data as $feature): ?>
+                <a href="<?php echo htmlspecialchars($feature['link']); ?>" class="project-card" target="_blank">
+                    <div class="project-image">
+                        <img src="<?php echo htmlspecialchars($feature['image']); ?>" alt="<?php echo htmlspecialchars($feature['title']); ?> Cover">
+                        <div class="project-overlay">
+                            <span>watch</span>
+                        </div>
+                    </div>
+                    <h3><?php echo htmlspecialchars($feature['title']); ?></h3>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
 </main>
 
 <?php include '../page_footer.php'; ?>
