@@ -15,8 +15,8 @@ $parsed_content = $parsedown->text($content);
 
 <main>
     <section class="contact-form">
-        <h2>Contact / Booking</h2>
-        <form action="/contact.php" method="POST">
+        <h2 id="contact-title">Contact / Booking</h2>
+        <form id="contact-form" action="/contact.php" method="POST">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" required>
@@ -36,9 +36,63 @@ $parsed_content = $parsedown->text($content);
             </div>
             <button type="submit" class="submit-button">Send Message</button>
         </form>
+        <div id="contact-response" class="contact-response"></div>
     </section>
 
     <?php echo $parsed_content; ?>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const contactResponse = document.getElementById('contact-response');
+    const contactTitle = document.getElementById('contact-title');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Change button state
+            const submitButton = contactForm.querySelector('.submit-button');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            // Get form data
+            const formData = new FormData(contactForm);
+
+            // Submit using fetch
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(async response => {
+                const text = await response.text();
+                
+                if (response.ok) {
+                    // Success
+                    contactForm.style.display = 'none';
+                    contactResponse.textContent = text;
+                    contactResponse.className = 'contact-response success';
+                    contactResponse.style.display = 'block';
+                } else {
+                    // Server error
+                    throw new Error(text || 'Oops! Something went wrong.');
+                }
+            })
+            .catch(error => {
+                // Network or other error
+                contactResponse.textContent = error.message;
+                contactResponse.className = 'contact-response error';
+                contactResponse.style.display = 'block';
+                
+                // Re-enable button if error
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
+        });
+    }
+});
+</script>
 
 <?php include '../page_footer.php'; ?>

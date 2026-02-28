@@ -219,6 +219,27 @@
             transform: translateY(0);
         }
 
+        .contact-response {
+            padding: 2rem;
+            text-align: center;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .contact-response.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .contact-response.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
         /* Music Page Hero Section */
         .latest-album-hero {
             background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
@@ -391,7 +412,7 @@
 
         .resource-image {
             flex: 1;
-            aspect-ratio: 16/9;
+            aspect-ratio: 1/1;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
