@@ -1,3 +1,15 @@
 # About Aryn Michelle
 
-Aryn Michelle is a talented artist creating music that resonates with audiences around the world.
+Aryn Michelle is a faith-based songwriter, recording artist, music professor, worship leader and mother of four from Dallas, TX.
+
+Aryn earned her BA in classical music from Southwestern University while contemplating God’s path for her life. She began her career pursuing the mission to be a “light in the darkness” by writing secular music from a Christian perspective. During this season she attended the acclaimed Berklee College of Music in Boston where she was given the Scott Benson Award for songwriting. Soon after leaving Boston she released her first two albums of positive, secular music.
+
+After returning to Dallas in 2009, she was recognized for her songwriting by being named TexasCSA’s 2010 Songwriter of the Year, winning KLTY’s 2010 Chick-fil-A Celebrate Freedom Jingle Competition and being a national top ten finalist in the 2011 Foldgers’ Jingle Writing Contest.
+
+Aryn began recording distinctly faith-based music in 2014 because she finally felt confirmed in her calling to write insightful, challenging, and thoughtful songs for the people of the church. In 2014 she was named Female Artist and Writer of the Year at Gospel Music Association’s Immerse Competition.
+
+In 2015, she released Depth, an album made up of theologically heavy questions and challenges to coax listeners to reconsider their own faith in light of biblical truth. In 2017 she released The Realest Thing, a concept album inspired by a book on Christian apologetics where each song explores a different philosophical argument for the existence of God and proofs for Jesus Christ as God’s Son. In 2019 Aryn released an EP of prayer and praise songs entitled “Nothing Can Take Me Away.”
+
+In May 2022 she released PARIAH (songs of biblical outcasts) which is a concept album inspired by the lives of different biblical people in times when they felt shunned by the world around them. UTR Media named “PARIAH” #4 on their list of the “Top 11 Gourmet Albums of 2022.” She followed this in summer of 2022 with “Pilot Light,” an EP of songs about her personal life as a woman, mother and creative engaging with a splintering American culture. This EP featured the single “America” which went on to be named the Grand Award Winner for the 2022 SongDoor International Songwriting Competition. Her 2023 album “Wild Beautiful Dangerous” is the story of scripture in three parts: Father, Son and Holy Spirit, from Genesis to Jesus to Revelation.
+
+Essentially, Aryn desires to engage the mind as well as the heart so that the truth—and not just a catchy hook—is what resonates with the listener. Aryn is the Head of the Songwriting Division for Visible Music College, an active member of the Art House Dallas community and serves as a lay worship leader at Irving Bible Church. Her newest concept album BLOODLINE is an album written with all female co-writers exploring the life and stories of the women in the genealogy of Jesus. 

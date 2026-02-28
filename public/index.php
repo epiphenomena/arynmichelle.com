@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+<?php
 // Load settings from JSON file
 $settings_file = __DIR__ . '/data/settings.json';
 $settings = json_decode(file_get_contents($settings_file), true);
@@ -12,15 +12,9 @@ $home_data = json_decode(file_get_contents($home_file), true);
 // Set default values if settings are not available
 $site_title = $settings['site-title'] ?? 'Aryn Michelle';
 $twitter_image = $settings['social-media-card'] ?? '/media/social-card-image.jpg';
-$background_image = $home_data['background_image'] ?? 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop';
 
 // Load and modify CSS to include the dynamic background
 $css_content = file_get_contents('./home.css');
-$css_content = str_replace(
-    "background-image: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop');",
-    "background-image: url('" . addslashes($background_image) . "');",
-    $css_content
-);
 ?>
 
 <head>
@@ -33,7 +27,7 @@ $css_content = str_replace(
     <meta property="og:image" content="<?php echo htmlspecialchars($twitter_image); ?>">
 </head>
 <body>
-    <?php 
+    <?php
     // Load home page quadrant data
     $home_file = __DIR__ . '/data/home.json';
     $home_data = json_decode(file_get_contents($home_file), true);
@@ -44,7 +38,7 @@ $css_content = str_replace(
     $social_data = json_decode(file_get_contents($social_file), true);
     $social_links = $social_data['social_links'];
 
-    include_once('socialicons.php'); 
+    include_once('socialicons.php');
     ?>
 
     <div class="bg-image-container">
@@ -55,10 +49,10 @@ $css_content = str_replace(
                 <h1 class="center-title">ARYN MICHELLE</h1>
                 <div class="social-links">
                     <?php foreach ($social_links as $link): ?>
-                        <?php 
+                        <?php
                         $url = $link['url'] ?? '#';
                         $type = $link['type'] ?? 'spotify';
-                        
+
                         // Call the appropriate function based on the type
                         switch ($type) {
                             case 'spotify':
@@ -97,7 +91,7 @@ $css_content = str_replace(
 
         <main class="main-grid">
             <?php foreach ($quadrants as $index => $quadrant): ?>
-            <?php 
+            <?php
             $title = $quadrant['title'] ?? 'Quadrant ' . ($index + 1);
             $subtitle = $quadrant['subtitle'] ?? 'Subtitle';
             $link = !empty($quadrant['link']) ? $quadrant['link'] : 'about/';

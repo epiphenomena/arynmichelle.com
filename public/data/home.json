@@ -4,12 +4,12 @@
         {
             "title": "MUSIC",
             "subtitle": "albums, EPs, streaming, charts",
-            "link": "about/"
+            "link": "music/"
         },
         {
             "title": "FEATURES",
             "subtitle": "videos, interviews, podcasts",
-            "link": "about/"
+            "link": "features/"
         },
         {
             "title": "ABOUT/CONTACT",
@@ -18,8 +18,8 @@
         },
         {
             "title": "RESOURCES",
-            "subtitle": "playlists, songwriting",
-            "link": "about/"
+            "subtitle": "store, playlists, songwriting",
+            "link": "resources/"
         }
     ]
 }

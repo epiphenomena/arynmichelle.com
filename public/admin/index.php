@@ -32,6 +32,24 @@ include 'header.php';
                 <p>Edit the content for the about page using Markdown</p>
                 <a href="about/" class="btn btn-primary">Edit About Page</a>
             </div>
+
+            <div class="admin-card">
+                <h3>Music Page</h3>
+                <p>Edit the content for the music page using Markdown</p>
+                <a href="music/" class="btn btn-primary">Edit Music Page</a>
+            </div>
+
+            <div class="admin-card">
+                <h3>Features Page</h3>
+                <p>Edit the content for the features page using Markdown</p>
+                <a href="features/" class="btn btn-primary">Edit Features Page</a>
+            </div>
+
+            <div class="admin-card">
+                <h3>Resources Page</h3>
+                <p>Edit the content for the resources page using Markdown</p>
+                <a href="resources/" class="btn btn-primary">Edit Resources Page</a>
+            </div>
         </div>
     </div>
 </main>
