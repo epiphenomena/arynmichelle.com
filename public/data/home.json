@@ -1,9 +1,9 @@
 {
-    "background_image": "/media/home-bg.jpg",
+    "background_image": "/media/home_bg.jpg",
     "quadrants": [
         {
             "title": "MUSIC",
-            "subtitle": "albums, EPs, streaming, charts",
+            "subtitle": "albums, EPs, streaming",
             "link": "music/"
         },
         {
@@ -12,8 +12,8 @@
             "link": "features/"
         },
         {
-            "title": "ABOUT/CONTACT",
-            "subtitle": "info, bio, booking",
+            "title": "CONTACT",
+            "subtitle": "bio, booking",
             "link": "about/"
         },
         {
