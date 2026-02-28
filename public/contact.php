@@ -25,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isSpam = !empty($website);
 
     // Set the recipient email address
-    $to = "aryn@thesonguru.com"; // Change this to your email address
-    $from = "aryn@thesonguru.com";
+    $to = "aryn@arynmichelle.com"; // Change this to your email address
+    $from = "aryn@arynmichelle.com";
 
     // Set the email subject
-    $subject = $isSpam ? "SPAM: New TheSONGuru Inquiry from $name" : "New TheSONGuru Inquiry from $name";
+    $subject = $isSpam ? "SPAM: New arynmichelle contact from $name" : "New arynmichelle.com contant from $name";
 
     // Build the email content
     $email_content = $isSpam ? "LIKELY SPAM - Honeypot field was filled\n\n" : "";

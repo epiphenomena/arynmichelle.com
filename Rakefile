@@ -18,9 +18,7 @@ end
 desc 'Publish the site to the server'
 task :publish do
   puts 'Publishing site...'
-  # This is a stub - implement your deployment method here
-  # Example: rsync, git push, FTP, etc.
-  # You might want to add configuration for server details
-  puts 'Insert rsync command here'
-  puts 'Site published successfully!'
+  sh "rsync -avzzh --progress --delete --exclude .git --exclude Rakefile --exclude data/ --exclude media/ ./public/ aryn:sandbox.arynmichelle.com/"
+    sh "rsync -avzzh --progress --delete aryn:sandbox.arynmichelle.com/data/ ./public/data/"
+    sh "rsync -avzzh --progress --delete aryn:sandbox.arynmichelle.com/media/ ./public/media/"
 end

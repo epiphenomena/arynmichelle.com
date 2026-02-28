@@ -1,19 +1,19 @@
 {
     "social_links": [
         {
-            "type": "youtube",
-            "url": "#"
-        },
-        {
             "type": "spotify",
             "url": "#"
         },
         {
-            "type": "youtube_music",
+            "type": "apple_music",
             "url": "#"
         },
         {
-            "type": "x",
+            "type": "youtube",
+            "url": "#"
+        },
+        {
+            "type": "youtube_music",
             "url": "#"
         },
         {
@@ -29,7 +29,7 @@
             "url": "#"
         },
         {
-            "type": "apple_music",
+            "type": "x",
             "url": "#"
         }
     ]

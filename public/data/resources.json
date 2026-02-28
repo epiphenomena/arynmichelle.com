@@ -1,29 +1,56 @@
 [
     {
         "title": "Songwriting",
-        "image": "/media/songwriting.jpg",
+        "image": "/media/resource-songwriting.jpg",
         "links": [
-            {"text": "Songwriting Resources", "url": "#"},
-            {"text": "Workshops", "url": "#"},
-            {"text": "Coaching", "url": "#"}
+            {
+                "text": "Aryn's Songwriting Textbook",
+                "url": "#"
+            },
+            {
+                "text": "Mini Songwriting Lessons",
+                "url": "#"
+            },
+            {
+                "text": "Song Editing Services",
+                "url": "thesonguru.com"
+            }
         ]
     },
     {
-        "title": "Playlists",
-        "image": "/media/playlists.jpg",
+        "title": "Spotify Playlists",
+        "image": "/media/resource-spotify-playlists.png",
         "links": [
-            {"text": "Aryn Michelle Selection", "url": "#"},
-            {"text": "Faith-Based Songwriters", "url": "#"},
-            {"text": "Inspirational Tracks", "url": "#"}
+            {
+                "text": "Doesn't Sound Like Christian Music",
+                "url": "#"
+            },
+            {
+                "text": "Scripture Songs",
+                "url": "#"
+            },
+            {
+                "text": "This is Aryn Michelle",
+                "url": "#"
+            }
         ]
     },
     {
         "title": "Store",
         "image": "/media/store.jpg",
         "links": [
-            {"text": "Digital Albums", "url": "#"},
-            {"text": "Merchandise", "url": "https://arynmichelle.bandcamp.com/merch"},
-            {"text": "Sheet Music", "url": "#"}
+            {
+                "text": "Bloodline",
+                "url": "#"
+            },
+            {
+                "text": "Merch",
+                "url": "https://arynmichelle.bandcamp.com/merch"
+            },
+            {
+                "text": "Chord Charts",
+                "url": "#"
+            }
         ]
     }
 ]

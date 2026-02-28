@@ -40,7 +40,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            animation: fadeIn 1s ease-in;
+            opacity: 0;
+            transform: translate3d(0, 0, 0); /* Force repaint/layer */
+            animation: fadeIn 1s ease-in forwards;
         }
 
         /* Dark Overlay */

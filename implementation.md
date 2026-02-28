@@ -1,13 +1,17 @@
 # Implementation Guide: Converting Static Website to Data-Driven CMS
 
 ## Objective
-Transform a static single-page website into a data-driven content management system where content is stored in JSON and markdown files and can be edited through an admin interface.
+The goal is to transform this set of php files into data-driven content management system where content is stored in JSON and markdown files and can be edited through an admin interface. For identified elements of the site, we must create a corresponding admin page (where the page name is a folder inside /admin with and index.php for the form -- the /admin/settings/index.php is an example.), and a file or files under /data and /media that the admin page saves changes to and the content page(s) read from. Security, user management, backups are all unnecessary. The admin and data directories are protected by htaccess files. A single admin user (who is assumed to be non-technical) will be editing content on the site. And backups are already handled by existing outside infrastructure. For markdown conversion, Parsedown.php contains the necessary functionality, so import where needed.
 
 ## Initial State
-- Single-page application with `index.php` containing all content sections
+- A home page `index.php` containing a quadrant of links
 - Static content hardcoded in HTML
 - Header and footer include files
 - Settings already configurable via `data/settings.json` and `admin/settings/index.php`
+- an example about/index.php page
+- assume a development server is already running and updates automatically as files are saved
+- the template for the admin pages already has save and cancel buttons. Make sure that the form you create has the id="main-form"
+-
 
 ## Required Sections to Convert
 
@@ -115,7 +119,7 @@ Transform a static single-page website into a data-driven content management sys
 
 ## Implementation Order
 1. Portfolio section (most complex)
-2. About section 
+2. About section
 3. Testimonials section
 4. Hero section
 5. Update admin dashboard

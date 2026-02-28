@@ -15,6 +15,8 @@ $twitter_image = $settings['social-media-card'] ?? '/media/social-card-image.jpg
 
 // Load and modify CSS to include the dynamic background
 $css_content = file_get_contents('./home.css');
+$background_image = $home_data['background_image'] ?? '/media/home_bg.jpg';
+$css_content = str_replace("url('/media/home_bg.jpg')", "url('$background_image')", $css_content);
 ?>
 
 <head>
@@ -28,9 +30,7 @@ $css_content = file_get_contents('./home.css');
 </head>
 <body>
     <?php
-    // Load home page quadrant data
-    $home_file = __DIR__ . '/data/home.json';
-    $home_data = json_decode(file_get_contents($home_file), true);
+    // Get quadrant data from already loaded home_data
     $quadrants = $home_data['quadrants'];
 
     // Load social media links data
