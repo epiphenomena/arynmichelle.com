@@ -50,5 +50,24 @@ include_once('socialicons.php');
     </div>
 </footer>
 
+<script>
+    // Fade in images once they've loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', function() {
+                    img.classList.add('loaded');
+                });
+                img.addEventListener('error', function() {
+                    img.classList.add('loaded');
+                });
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

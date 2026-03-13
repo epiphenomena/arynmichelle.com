@@ -1,15 +1,15 @@
 [
     {
-        "title": "Songwriting",
+        "title": "Songwriting Resources",
         "image": "/media/resource-songwriting.jpg",
         "links": [
             {
-                "text": "Aryn's Songwriting Textbook",
-                "url": "#"
+                "text": "Aryn's Songwriting Textbook (coming soon)",
+                "url": ""
             },
             {
                 "text": "Mini Songwriting Lessons",
-                "url": "#"
+                "url": "https://youtube.com/playlist?list=PLltG7n2gFTS2ysrAh1vNlXgqfzh7zXAGR&si=LZIS0VJTrZqVJqAo"
             },
             {
                 "text": "Song Editing Services",
@@ -18,38 +18,34 @@
         ]
     },
     {
-        "title": "Spotify Playlists",
+        "title": "Curated Spotify Playlists",
         "image": "/media/resource-spotify-playlists.png",
         "links": [
             {
-                "text": "Doesn't Sound Like Christian Music",
-                "url": "#"
+                "text": "Doesn't Sound Like Christian Music (Indie Christian Updated Weekly)",
+                "url": "https://open.spotify.com/playlist/2SMShcb8fM54NxXfTiN46v?si=da8ae28206e84b65"
             },
             {
-                "text": "Scripture Songs",
-                "url": "#"
+                "text": "Scripture Songs (indie christian songs directly inspired by scripture)",
+                "url": "https://open.spotify.com/playlist/0ZocZxSfSDZBXjrsBM1sxF?si=3d731b1307304665"
             },
             {
                 "text": "This is Aryn Michelle",
-                "url": "#"
+                "url": "https://open.spotify.com/playlist/37i9dQZF1DZ06evO3f5KbS?si=5349b5d766ec4156"
             }
         ]
     },
     {
         "title": "Store",
-        "image": "/media/store.jpg",
+        "image": "/media/resource-store.png",
         "links": [
-            {
-                "text": "Bloodline",
-                "url": "#"
-            },
             {
                 "text": "Merch",
                 "url": "https://arynmichelle.bandcamp.com/merch"
             },
             {
-                "text": "Chord Charts",
-                "url": "#"
+                "text": "Chord Charts (coming soon)",
+                "url": ""
             }
         ]
     }

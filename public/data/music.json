@@ -4,24 +4,39 @@
         "description": "A concept album about the lives of the women in the genealogy of Jesus. ",
         "cover_image": "/media/latest-album-cover.jpg",
         "youtube_url": "https://youtube.com/playlist?list=PLltG7n2gFTS3NT93Zzzzk_-hayuBs4n8s&si=ES1Iv4jG4VjKgdEQ",
-        "spotify_url": "https://spotify.com/...",
-        "apple_music_url": "https://apple.com/..."
+        "spotify_url": "https://open.spotify.com/playlist/6Fo14P8O5DfOfcdZnI18HA?si=d402b694315c4fa2",
+        "apple_music_url": "https://music.apple.com/us/artist/aryn-michelle/316812210/singles"
     },
     "previous_projects": [
         {
-            "title": "PARIAH",
-            "link": "https://arynmichelle.bandcamp.com/album/pariah",
-            "cover_image": "/media/pariah.jpg"
+            "title": "PARIAH (songs of biblical outcasts)",
+            "link": "https://ffm.to/pariahalbum",
+            "cover_image": "/media/project-cover-0.jpg"
+        },
+        {
+            "title": "Wild Beautiful Dangerous ",
+            "link": "https://distrokid.com/hyperfollow/arynmichelle/wild-beautiful-dangerous?utm_campaign=website&utm_medium=Email+&utm_source=SendGrid",
+            "cover_image": "/media/project-cover-1.jpg"
+        },
+        {
+            "title": "in time of need (EP)",
+            "link": "https://wingsmusic.lnk.to/intimeofneed",
+            "cover_image": "/media/project-cover-3.jpg"
+        },
+        {
+            "title": "Hurry Christmas, Hurry Fast (EP)",
+            "link": "https://wingsmusic.lnk.to/HurryChristmasHurryFast",
+            "cover_image": "/media/project-cover-2.jpg"
         },
         {
             "title": "The Realest Thing",
-            "link": "https://arynmichelle.bandcamp.com/album/the-realest-thing",
-            "cover_image": "/media/realest_thing.jpg"
+            "link": "(link coming soon)",
+            "cover_image": "/media/project-cover-4.jpg"
         },
         {
             "title": "Depth",
-            "link": "https://arynmichelle.bandcamp.com/album/depth",
-            "cover_image": "/media/depth.jpg"
+            "link": "(link coming soon)",
+            "cover_image": "/media/project-cover-5.jpg"
         }
     ]
 }

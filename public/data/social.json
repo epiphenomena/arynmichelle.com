@@ -2,35 +2,27 @@
     "social_links": [
         {
             "type": "spotify",
-            "url": "#"
+            "url": "https://open.spotify.com/artist/5vDZR7NBIN9RU2Yhcu3KXJ?si=yN9R0RAyQ9-c0ak92xQX7g"
         },
         {
             "type": "apple_music",
-            "url": "#"
+            "url": "https://music.apple.com/us/artist/aryn-michelle/316812210"
         },
         {
             "type": "youtube",
-            "url": "#"
-        },
-        {
-            "type": "youtube_music",
-            "url": "#"
-        },
-        {
-            "type": "instagram",
-            "url": "#"
-        },
-        {
-            "type": "tiktok",
-            "url": "#"
+            "url": "https://www.youtube.com/arynmichellemusic"
         },
         {
             "type": "facebook",
-            "url": "#"
+            "url": "https://www.facebook.com/arynmichellemusic"
         },
         {
-            "type": "x",
-            "url": "#"
+            "type": "instagram",
+            "url": "https://www.instagram.com/arynmichelle/"
+        },
+        {
+            "type": "tiktok",
+            "url": "https://www.tiktok.com/@arynmichellemusic?lang=en"
         }
     ]
 }

@@ -18,7 +18,7 @@ end
 desc 'Publish the site to the server'
 task :publish do
   puts 'Publishing site...'
-  sh "rsync -avzzh --progress --delete --exclude .git --exclude Rakefile --exclude data/ --exclude media/ ./public/ aryn:sandbox.arynmichelle.com/"
-    sh "rsync -avzzh --progress --delete aryn:sandbox.arynmichelle.com/data/ ./public/data/"
-    sh "rsync -avzzh --progress --delete aryn:sandbox.arynmichelle.com/media/ ./public/media/"
+  sh "rsync -avzzh --progress --delete --exclude .git --exclude Rakefile --exclude data/ --exclude media/ ./public/ aryn:arynmichelle.com/"
+    sh "rsync -avzzh --progress --delete aryn:arynmichelle.com/data/ ./public/data/"
+    sh "rsync -avzzh --progress --delete aryn:arynmichelle.com/media/ ./public/media/"
 end

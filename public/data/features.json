@@ -1,17 +1,27 @@
 [
     {
-        "title": "UTR Media Interview",
-        "image": "/media/feature-utr.jpg",
-        "link": "https://utrmedia.com/..."
+        "title": "NoteSpire Radio Artist Takeover: Aryn Michelle on the BLOODLINE album",
+        "link": "https://share.transistor.fm/s/36a8372d?fbclid=IwY2xjawQf2HlleHRuA2FlbQIxMQBzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeXP4UBe-YfrBRlC_mnO0yi_FSQasXeKZMtbIo5BOVJ5q8dhc-CAEDk-fVT7w_aem_FUBStBnlS2y_C9I6riNxSg#",
+        "image": "/media/feature-item-3.png"
     },
     {
-        "title": "Live at Irving Bible Church",
-        "image": "/media/feature-live.jpg",
-        "link": "https://youtube.com/..."
+        "title": "BEATS Episode 76: Aryn Michelle \"Can Faith & Creativity Coexist in Music?\"",
+        "link": "https://youtu.be/3n3ItnYr6cg?si=CztDxBrlbZeV7rtV",
+        "image": "/media/feature-item-0.png"
     },
     {
-        "title": "Songwriting Podcast",
-        "image": "/media/feature-podcast.jpg",
-        "link": "#"
+        "title": "New Release Today Devotional: Kevin Davis reviews \"Call Us Yours\"",
+        "link": "https://www.newreleasetoday.com/article.php?article_id=4129",
+        "image": "/media/feature-item-1.png"
+    },
+    {
+        "title": "The JFH Podcast Episode 225: Indie Artist Panel",
+        "link": "https://jesusfreakhideout.com/podcasts/Episode225.asp",
+        "image": "/media/feature-item-2.png"
+    },
+    {
+        "title": "The CIAS Podcast: Create True Art with Aryn Michelle",
+        "link": "https://www.buzzsprout.com/1300051/episodes/8337792-create-true-art-with-aryn-michelle",
+        "image": "/media/feature-item-4.png"
     }
 ]

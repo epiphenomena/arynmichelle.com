@@ -524,3 +524,13 @@
                 font-size: 1.25rem;
             }
         }
+
+        /* Image Fade-in on Load */
+        html.js img {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        html.js img.loaded {
+            opacity: 1;
+        }

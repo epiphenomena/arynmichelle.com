@@ -9,8 +9,9 @@ $twitter_image = $settings['social-media-card'] ?? '/media/social-card-image.jpg
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+    <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($site_title); ?></title>
