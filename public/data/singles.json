@@ -1,0 +1,11 @@
+{
+    "latest_album": {
+        "title": "Single Title",
+        "description": "Single description.",
+        "cover_image": "/media/project-cover-0.jpg",
+        "youtube_url": "",
+        "spotify_url": "",
+        "apple_music_url": ""
+    },
+    "previous_projects": []
+}

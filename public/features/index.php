@@ -15,7 +15,7 @@ $features_data = file_exists($features_file) ? json_decode(file_get_contents($fe
                     <div class="project-image">
                         <img src="<?php echo htmlspecialchars($feature['image']); ?>" alt="<?php echo htmlspecialchars($feature['title']); ?> Cover">
                         <div class="project-overlay">
-                            <span>watch</span>
+                            <span>view</span>
                         </div>
                     </div>
                     <h3><?php echo htmlspecialchars($feature['title']); ?></h3>

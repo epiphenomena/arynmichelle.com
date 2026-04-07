@@ -26,22 +26,25 @@ include 'header.php';
             
             <div class="admin-card">
                 <a href="about/" class="btn btn-primary">Edit About Page</a>
-                <p>Update the content for the about page using Markdown</p>
+                <a href="about/gallery/" class="btn btn-secondary">Manage Gallery</a>
+                <p>Update the content and photo gallery for the about page</p>
             </div>
 
             <div class="admin-card">
                 <a href="music/" class="btn btn-primary">Edit Music Page</a>
-                <p>Update the content for the music page using Markdown</p>
+                <a href="music/singles/" class="btn btn-secondary">Manage Singles</a>
+                <p>Update the content for the music page and manage singles</p>
             </div>
 
             <div class="admin-card">
                 <a href="features/" class="btn btn-primary">Edit Features Page</a>
-                <p>Update the content for the features page using Markdown</p>
+                <p>Update the content for the features page</p>
             </div>
 
             <div class="admin-card">
                 <a href="resources/" class="btn btn-primary">Edit Resources Page</a>
-                <p>Update the content for the resources page using Markdown</p>
+                <a href="resources/chord-charts/" class="btn btn-secondary">Manage Chord Charts</a>
+                <p>Update the content for the resources page and manage chord charts</p>
             </div>
         </div>
     </div>
