@@ -6,5 +6,5 @@
  */
 require __DIR__ . '/lib.php';
 
-header('Location: ' . dtb_url('admin.php'), true, 302);
+header('Location: ' . dtb_admin_url(), true, 302);
 exit;

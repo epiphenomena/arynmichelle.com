@@ -6,8 +6,9 @@
  * Uploaded audio:   media/<token>/<random>.<ext>
  * Published page:   <token>/<playlist-slug>/index.html   (self-contained static HTML)
  *
- * Every PHP entry point sits flat in this directory, so dirname(SCRIPT_NAME) is
- * always the app's base URL and the whole thing is subdirectory-agnostic.
+ * Public entry points sit in this directory and the admin lives in admin/, which
+ * declares DTB_IN_ADMIN so dtb_base_url() can strip the extra level. The base URL
+ * is always derived from SCRIPT_NAME, so the app is subdirectory-agnostic.
  */
 
 define('DTB_ROOT', __DIR__);
@@ -53,15 +54,40 @@ function dtb_bootstrap()
 
 /* ------------------------------------------------------------- small utils */
 
+/**
+ * Web path of the app root (the directory holding this file).
+ *
+ * Admin scripts live one level down in admin/ and declare DTB_IN_ADMIN before
+ * including this file, so the extra level can be stripped. Deriving it from
+ * SCRIPT_NAME keeps the app working in any subdirectory without configuration,
+ * and stays correct under the admin/ rewrite because SCRIPT_NAME still names
+ * the real script.
+ */
 function dtb_base_url()
 {
     $base = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/'));
-    return ($base === '/' || $base === '.') ? '' : rtrim($base, '/');
+    if (defined('DTB_IN_ADMIN')) {
+        $base = dirname($base);
+    }
+    return ($base === '/' || $base === '.' || $base === '\\') ? '' : rtrim($base, '/');
 }
 
 function dtb_url($path = '')
 {
     return dtb_base_url() . '/' . ltrim($path, '/');
+}
+
+/** Web path inside the admin. Everything the admin serves lives under admin/,
+ *  which is where the HTTP auth is anchored -- see the note in admin/.htaccess. */
+function dtb_admin_url($path = '')
+{
+    return dtb_base_url() . '/admin/' . ltrim($path, '/');
+}
+
+/** Clean editor URL for one playlist: <base>/admin/<token>/ */
+function dtb_edit_url($token)
+{
+    return dtb_admin_url($token . '/');
 }
 
 function h($s)

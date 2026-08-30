@@ -4,10 +4,11 @@
  *
  * All writes are POST -> redirect -> GET so a refresh never repeats an action.
  */
-require_once __DIR__ . '/lib.php';
+define('DTB_IN_ADMIN', true);
+require_once __DIR__ . '/../lib.php';
 dtb_bootstrap();
 
-$self = dtb_url('admin.php');
+$self = dtb_admin_url();
 
 /* ------------------------------------------------------------------ actions */
 
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $playlist = dtb_create(isset($_POST['name']) ? $_POST['name'] : '');
         if ($playlist) {
             // Straight into the editor so she can start uploading immediately.
-            header('Location: ' . dtb_url('edit.php') . '?t=' . urlencode($playlist['token']) . '&msg=created', true, 303);
+            header('Location: ' . dtb_edit_url($playlist['token']) . '?msg=created', true, 303);
         } else {
             header('Location: ' . $self . '?err=create', true, 303);
         }
@@ -81,7 +82,7 @@ $playlists = dtb_all();
 
 $title = 'Playlists';
 $show_save = false;
-include __DIR__ . '/admin_header.php';
+include __DIR__ . '/header.php';
 ?>
 
 <main>
@@ -113,7 +114,7 @@ include __DIR__ . '/admin_header.php';
                 <?php foreach ($playlists as $p):
                     $count = count($p['tracks']);
                     $share = dtb_share_url($p);
-                    $editUrl = dtb_url('edit.php') . '?t=' . urlencode($p['token']);
+                    $editUrl = dtb_edit_url($p['token']);
                 ?>
                 <div class="playlist-card">
                     <h3><?php echo h($p['name']); ?></h3>
@@ -156,4 +157,4 @@ include __DIR__ . '/admin_header.php';
     </div>
 </main>
 
-<?php include __DIR__ . '/admin_footer.php'; ?>
+<?php include __DIR__ . '/footer.php'; ?>

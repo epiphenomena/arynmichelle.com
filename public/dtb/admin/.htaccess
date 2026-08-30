@@ -1,0 +1,31 @@
+Options -Indexes
+DirectoryIndex index.php
+
+# Auth is anchored to this DIRECTORY, not to filenames, and that is deliberate.
+#
+# Apache resolves access control against the ORIGINAL request URL, during the
+# access-control phase. Per-directory mod_rewrite runs later, at fixup. So a
+# <FilesMatch "playlist\.php"> rule would be evaluated against the pretty URL
+# /admin/<token>/ -- which does not match it -- and the rewrite to playlist.php
+# would then hand the editor over with no password at all.
+#
+# A directory rule has no such hole: every URL under /admin/ is covered before
+# any rewriting happens, whatever it is later rewritten to. Do not narrow this
+# to <Files>/<FilesMatch> while the rewrite below exists.
+#
+# Same password file as the rest of the site's admin, so there is only one login.
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile /home/aryncalhoun/htpasswd
+Require valid-user
+
+# Clean editor URLs: /admin/<32-hex token>/ -> playlist.php?t=<token>
+# Paths are relative to this directory, so it keeps working in any subdirectory.
+# QSA preserves the ?msg=/?err= flags the save-then-redirect flow adds; those
+# never include a t= of their own, so the token in the path stays authoritative.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([a-f0-9]{32})/?$ playlist.php?t=$1 [L,QSA]
+</IfModule>

@@ -9,11 +9,12 @@
  *   $toast      -- ['text' => string, 'error' => bool] message to flash on load
  */
 if (!function_exists('dtb_url')) {
-    require_once __DIR__ . '/lib.php';
+    defined('DTB_IN_ADMIN') || define('DTB_IN_ADMIN', true);
+    require_once __DIR__ . '/../lib.php';
 }
 $title      = isset($title) ? $title : 'Playlists';
 $show_save  = !empty($show_save);
-$cancel_url = isset($cancel_url) ? $cancel_url : dtb_url('admin.php');
+$cancel_url = isset($cancel_url) ? $cancel_url : dtb_admin_url();
 $toast      = isset($toast) && is_array($toast) ? $toast : null;
 ?>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@ $toast      = isset($toast) && is_array($toast) ? $toast : null;
     <header class="sticky-header">
         <nav>
             <span class="brand">Demo Tape Board</span>
-            <a href="<?php echo h(dtb_url('admin.php')); ?>">Playlists</a>
+            <a href="<?php echo h(dtb_admin_url()); ?>">Playlists</a>
         </nav>
         <?php if ($show_save): ?>
         <div class="header-actions">

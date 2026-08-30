@@ -6,8 +6,10 @@ from arynmichelle.com, and nothing on arynmichelle.com reads from here.
 
 ## How it works
 
-- **Admin** (`admin.php`, `edit.php`) is dynamic PHP, behind the site's existing
-  HTTP Basic auth.
+- **Admin** (everything under `admin/`) is dynamic PHP, behind the site's
+  existing HTTP Basic auth:
+  - `/dtb/admin/` — the playlist list
+  - `/dtb/admin/<token>/` — the editor for one playlist
 - **Shared playlist pages are static HTML.** Saving a playlist regenerates
   `<token>/<playlist-name>/index.html` — one self-contained file with its CSS and
   JS inlined. Serving a playlist runs no PHP at all.
@@ -34,20 +36,29 @@ URL. The old link stops working. The admin warns about this next to the name fie
 ## Layout
 
     dtb/
-      .htaccess            auth, no-index headers, denies *.json
+      .htaccess            no-index headers, denies *.json and retired entry points
       lib.php              storage, publishing, uploads
-      index.php            redirect to the admin
-      admin.php            playlist list: create, delete, share, rebuild
-      edit.php             one playlist: rename, upload, reorder, retitle, remove
-      admin_header.php     shared admin chrome
-      admin_footer.php
-      admin.css            light admin theme, matches /admin
+      index.php            redirect to admin/
       page_template.php    generates the shared page
       player.css           inlined into every generated page
       player.js            inlined into every generated page
+      admin/
+        .htaccess          HTTP auth (directory-scoped) + clean-URL rewrite
+        index.php          playlist list: create, delete, share, rebuild
+        playlist.php       one playlist: rename, upload, reorder, retitle, remove
+        header.php         shared admin chrome
+        footer.php
+        admin.css          light admin theme, matches /admin
       data/playlists/      *.json, one per playlist        [server-only]
       media/<token>/       uploaded audio                  [server-only]
       <token>/<name>/      generated index.html            [server-only]
+
+The admin lives in its own directory because the HTTP auth has to be scoped to
+a directory rather than to filenames. Apache checks access against the original
+request URL, but per-directory rewrites run later -- so a filename rule would be
+evaluated against `/admin/<token>/`, miss, and serve the editor unauthenticated.
+It cannot live at `/dtb/` itself either: directory auth there would lock the
+public playlist pages too. See the long comment in `admin/.htaccess`.
 
 `data/` and `media/` are created automatically on first request — rsync never
 deploys them.
@@ -70,9 +81,11 @@ of the old assets until they are regenerated.
 
     rake serve      # then http://localhost:8000/dtb/
 
-`php -S` ignores `.htaccess`, so locally there is **no password prompt** and the
-`.json` deny rule is not enforced. Both work on Apache. Range requests (seeking
-within a track) are also unreliable under `php -S`; test scrubbing on the server.
+`php -S` ignores `.htaccess`, so locally there is **no password prompt**, the
+`.json` deny rule is not enforced, and the clean editor URL `/dtb/admin/<token>/`
+does not resolve -- use `/dtb/admin/playlist.php?t=<token>` instead. All three
+work on Apache. Range requests (seeking within a track) are also unreliable
+under `php -S`; test scrubbing on the server.
 
 ## Notes
 

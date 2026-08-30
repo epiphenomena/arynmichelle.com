@@ -1,18 +1,19 @@
 Options -Indexes
 DirectoryIndex index.html index.php
 
-# Playlist records live under data/ as JSON. Nothing here is ever meant to be
-# fetched directly, and <Directory> is not allowed in .htaccess, so deny by name.
+# The playlist records under data/ are JSON. Nothing here is meant to be fetched
+# directly, and <Directory> is not allowed in .htaccess, so deny by name.
 <FilesMatch "\.json$">
     Require all denied
 </FilesMatch>
 
-# Same password file the rest of the site's admin uses, so there is only one login.
+# Retired entry points from the first version of this tool, when the admin lived
+# here at the top level. publish_dtb never deletes, so a stale copy may still be
+# sitting on the server -- and it would no longer be covered by any auth, since
+# that now lives in admin/. Deny the old names outright. Nothing under admin/ is
+# called admin.php or edit.php, so this cannot shadow a live file.
 <FilesMatch "^(admin|edit)\.php$">
-    AuthType Basic
-    AuthName "Restricted Area"
-    AuthUserFile /home/aryncalhoun/htpasswd
-    Require valid-user
+    Require all denied
 </FilesMatch>
 
 # Shared playlists are plain static pages at <token>/<playlist-name>/index.html,

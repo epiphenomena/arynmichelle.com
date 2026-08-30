@@ -6,11 +6,13 @@
  *   action=upload  multipart, appends tracks
  *   action=save    id order + titles + name/note, deletes anything left out
  *
- * The token always travels in the query string, never in the POST body: an
- * oversized upload empties $_POST entirely, and we still need to know where to
- * send the browser back to.
+ * The token always travels in the URL, never in the POST body: an oversized
+ * upload empties $_POST entirely, and we still need to know where to send the
+ * browser back to. admin/.htaccess rewrites /admin/<token>/ to this script with
+ * the token in ?t=, so it still arrives as $_GET['t'].
  */
-require_once __DIR__ . '/lib.php';
+define('DTB_IN_ADMIN', true);
+require_once __DIR__ . '/../lib.php';
 dtb_bootstrap();
 
 /* --------------------------------------------------------------- plumbing */
@@ -19,9 +21,9 @@ $token = isset($_GET['t']) ? (string) $_GET['t'] : '';
 
 function dtb_edit_redirect($token, array $params)
 {
-    $url = dtb_url('edit.php') . '?t=' . urlencode($token);
+    $url = dtb_edit_url($token);
     if ($params) {
-        $url .= '&' . http_build_query($params);
+        $url .= '?' . http_build_query($params);
     }
     header('Location: ' . $url, true, 303);
     exit;
@@ -29,7 +31,7 @@ function dtb_edit_redirect($token, array $params)
 
 function dtb_bail_to_dashboard()
 {
-    header('Location: ' . dtb_url('admin.php') . '?err=notfound', true, 303);
+    header('Location: ' . dtb_admin_url() . '?err=notfound', true, 303);
     exit;
 }
 
@@ -237,13 +239,13 @@ if ($banner_errors && !$toast) {
 
 $share = dtb_share_url($playlist);
 $limit = dtb_format_bytes(dtb_upload_limit());
-$self = dtb_url('edit.php') . '?t=' . urlencode($token);
+$self = dtb_edit_url($token);
 $trackCount = count($playlist['tracks']);
 
 $title = $playlist['name'] . ' -- Demo Tape Board';
 $show_save = true;
-$cancel_url = dtb_url('admin.php');
-include __DIR__ . '/admin_header.php';
+$cancel_url = dtb_admin_url();
+include __DIR__ . '/header.php';
 ?>
 
 <main>
@@ -558,4 +560,4 @@ include __DIR__ . '/admin_header.php';
 }());
 </script>
 
-<?php include __DIR__ . '/admin_footer.php'; ?>
+<?php include __DIR__ . '/footer.php'; ?>
