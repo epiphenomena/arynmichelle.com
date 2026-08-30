@@ -1,0 +1,339 @@
+/* -----------------------------------------------------------------------
+   demo-tape-board :: shared playlist page
+   Inlined verbatim into every published index.html, so it must stand alone:
+   no imports, no fonts, no external anything.
+   ----------------------------------------------------------------------- */
+
+:root {
+    /* Tells the browser to paint the NATIVE <audio> controls in their dark skin. */
+    color-scheme: dark;
+
+    --dtb-bg: #111;
+    --dtb-surface: #1a1a1a;
+    --dtb-surface-hi: #202020;
+    --dtb-surface-hover: #262626;
+    --dtb-text: #eee;
+    --dtb-muted: #aaa;
+    --dtb-faint: #777;
+    --dtb-heading: #fff;
+    --dtb-accent: #8e1b1b;
+    --dtb-accent-soft: rgba(142, 27, 27, 0.28);
+    --dtb-border: #333;
+    --dtb-radius: 10px;
+
+    /* Replaced with the measured bar height by player.js; this is the fallback. */
+    --dtb-bar-h: calc(132px + env(safe-area-inset-bottom, 0px));
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--dtb-bg);
+    color: var(--dtb-text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Only reserve room for the bar when there actually is one, and only once JS
+   has taken over -- without JS the bar is hidden and the padding is dead space. */
+body.dtb-js.dtb-has-bar {
+    padding-bottom: calc(var(--dtb-bar-h) + 1.5rem);
+}
+
+/* Anything that only does something with JS stays out of the way without it. */
+body:not(.dtb-js) .dtb-jsonly {
+    display: none !important;
+}
+
+.dtb-wrap {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 1rem;
+}
+
+@media (min-width: 640px) {
+    .dtb-wrap {
+        padding: 3rem 2rem 1.5rem;
+    }
+}
+
+/* ------------------------------------------------------------------ header */
+
+.dtb-header {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--dtb-border);
+}
+
+.dtb-title {
+    color: var(--dtb-heading);
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    overflow-wrap: break-word;
+}
+
+@media (min-width: 640px) {
+    .dtb-title {
+        font-size: 2.4rem;
+    }
+}
+
+.dtb-meta {
+    margin-top: 0.4rem;
+    color: var(--dtb-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.dtb-note {
+    margin-top: 1.1rem;
+    color: var(--dtb-muted);
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.dtb-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.35rem;
+}
+
+.dtb-btn {
+    font: inherit;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    color: var(--dtb-text);
+    background-color: var(--dtb-surface-hi);
+    border: 1px solid var(--dtb-border);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.dtb-btn:hover {
+    background-color: var(--dtb-surface-hover);
+}
+
+.dtb-btn:focus-visible {
+    outline: 2px solid var(--dtb-accent);
+    outline-offset: 2px;
+}
+
+.dtb-btn[aria-pressed="true"] {
+    color: var(--dtb-heading);
+    background-color: var(--dtb-accent-soft);
+    border-color: var(--dtb-accent);
+}
+
+/* -------------------------------------------------------------- track list */
+
+.dtb-tracks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.dtb-row {
+    display: grid;
+    grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem 0.9rem;
+    color: var(--dtb-text);
+    text-decoration: none;
+    background-color: var(--dtb-surface);
+    border: 1px solid transparent;
+    border-radius: var(--dtb-radius);
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.dtb-row:hover {
+    background-color: var(--dtb-surface-hi);
+}
+
+.dtb-row:focus-visible {
+    outline: 2px solid var(--dtb-accent);
+    outline-offset: 2px;
+}
+
+.dtb-num {
+    color: var(--dtb-faint);
+    font-size: 0.85rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.dtb-name {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.dtb-dur {
+    color: var(--dtb-muted);
+    font-size: 0.82rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.dtb-track.dtb-current .dtb-row {
+    background-color: var(--dtb-surface-hi);
+    border-color: var(--dtb-accent);
+    box-shadow: inset 3px 0 0 0 var(--dtb-accent);
+}
+
+.dtb-track.dtb-current .dtb-name {
+    color: var(--dtb-heading);
+    font-weight: 600;
+}
+
+.dtb-track.dtb-current .dtb-num {
+    color: var(--dtb-accent);
+    font-size: 0.75rem;
+}
+
+.dtb-track.dtb-error .dtb-name {
+    color: var(--dtb-faint);
+}
+
+.dtb-track.dtb-error .dtb-dur {
+    color: var(--dtb-accent);
+}
+
+/* ------------------------------------------------------------ empty state */
+
+.dtb-empty {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: var(--dtb-muted);
+    background-color: var(--dtb-surface);
+    border: 1px dashed var(--dtb-border);
+    border-radius: var(--dtb-radius);
+}
+
+.dtb-empty strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--dtb-heading);
+    font-size: 1.1rem;
+}
+
+.dtb-hint {
+    margin-top: 2rem;
+    color: var(--dtb-faint);
+    font-size: 0.78rem;
+}
+
+/* -------------------------------------------------------------- player bar */
+
+.dtb-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    background-color: rgba(26, 26, 26, 0.97);
+    border-top: 1px solid var(--dtb-border);
+    padding: 0.65rem 1.25rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+}
+
+@supports (backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px)) {
+    .dtb-bar {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.dtb-bar-inner {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.dtb-now {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.dtb-now-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--dtb-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.dtb-skip {
+    flex: 0 0 auto;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font: inherit;
+    font-size: 0.8rem;
+    line-height: 1;
+    color: var(--dtb-text);
+    background-color: var(--dtb-surface-hi);
+    border: 1px solid var(--dtb-border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.dtb-skip:hover {
+    background-color: var(--dtb-surface-hover);
+    border-color: var(--dtb-accent);
+}
+
+.dtb-skip:focus-visible {
+    outline: 2px solid var(--dtb-accent);
+    outline-offset: 2px;
+}
+
+.dtb-audio {
+    display: block;
+    width: 100%;
+    /* Chrome's native control panel is ~54px tall; forcing it shorter clips the
+       bottom edge. player.js measures the real bar height at runtime. */
+    min-height: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

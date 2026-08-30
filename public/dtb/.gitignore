@@ -1,0 +1,12 @@
+# Everything below is runtime state that lives on the server: the playlist
+# records, the uploaded audio, and the generated <token>/<name>/index.html
+# pages. It is all recreated by the app (Rebuild all pages) and must never be
+# committed or deployed over.
+data/playlists/*
+media/*
+!data/playlists/.gitkeep
+!media/.htaccess
+!data/.htaccess
+
+# Generated playlist pages: one directory per 32-character hex token.
+[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*/

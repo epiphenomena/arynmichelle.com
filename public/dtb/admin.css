@@ -1,0 +1,413 @@
+/* Demo Tape Board -- admin styles.
+   Deliberately mirrors the site's main admin (light theme, #F8F9FA / #007BFF,
+   sticky 60px header, card grid) so the two dashboards feel like one product.
+   Self-contained: nothing here is shared with /admin/. */
+
+:root {
+    --bg-color: #F8F9FA;
+    --text-color: #212529;
+    --muted-color: #6C757D;
+    --primary-color: #007BFF;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #6C757D;
+    --danger-color: #E53E3E;
+    --danger-hover-color: #C53030;
+    --border-color: #CED4DA;
+    --input-bg-color: #FFFFFF;
+    --footer-color: #E9ECEF;
+    --toast-bg: #28A745;
+    --toast-error-bg: #E53E3E;
+    --toast-text: #FFFFFF;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --mono-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding-top: 60px; /* Space for the sticky header */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Header & Navigation --- */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--footer-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.25rem;
+    gap: 0.5rem;
+    z-index: 1000;
+}
+
+.sticky-header nav {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.sticky-header nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.sticky-header nav a:hover { color: var(--text-color); }
+
+.sticky-header .brand {
+    font-weight: 700;
+    color: var(--text-color);
+    padding-right: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* --- Layout --- */
+main { padding: 2rem 1.25rem 3rem; }
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 { font-size: 1.6rem; margin: 0 0 0.25rem; }
+h2 { font-size: 1.15rem; margin: 0 0 1rem; }
+
+.lede {
+    color: var(--muted-color);
+    margin: 0 0 1.5rem;
+    max-width: 60ch;
+}
+
+/* Bare <form> stays unstyled on purpose: these pages use many tiny forms
+   (delete buttons, rebuild) and a panel look would swallow them. */
+.panel {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.panel > h2:first-child { margin-top: 0; }
+
+/* --- Form elements --- */
+.form-group { margin-bottom: 1.25rem; }
+.form-group:last-child { margin-bottom: 0; }
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #495057;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+textarea { resize: vertical; min-height: 90px; }
+
+.hint {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted-color);
+    margin-top: 0.4rem;
+}
+
+.hint-warn {
+    display: block;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    color: #8a5a00;
+    background: #FFF8E1;
+    border: 1px solid #FFE0A3;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    line-height: 1.45;
+}
+
+.inline-form {
+    display: flex;
+    gap: 0.75rem;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.inline-form input[type="text"] { flex: 1 1 220px; width: auto; }
+
+/* --- Buttons --- */
+.btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.3;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    min-height: 44px;              /* comfortable tap target */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+.btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.btn-primary:not(:disabled):hover {
+    background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+}
+.btn-primary:disabled { background-color: #9fccff; border-color: #9fccff; }
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #2d3748;
+    border-color: #cbd5e0;
+}
+.btn-secondary:not(:disabled):hover { background-color: #cbd5e0; border-color: #a0aec0; }
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: #fff;
+    border-color: var(--danger-color);
+}
+.btn-danger:not(:disabled):hover { background-color: var(--danger-hover-color); border-color: var(--danger-hover-color); }
+
+.btn-small {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+    min-height: 38px;
+}
+
+/* --- Playlist cards --- */
+.playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.playlist-card {
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.playlist-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+.playlist-card h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    overflow-wrap: anywhere;
+}
+
+.meta {
+    margin: 0;
+    color: var(--muted-color);
+    font-size: 0.9rem;
+}
+
+.share-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+.share-row input[type="text"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: var(--mono-family);
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    background: #f1f3f5;
+}
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 0.25rem;
+}
+
+.card-actions form { display: contents; }
+
+/* --- Empty state --- */
+.empty-state {
+    background: #fff;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: var(--muted-color);
+    margin-top: 1.5rem;
+}
+
+/* --- Banners --- */
+.banner {
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid transparent;
+}
+.banner-ok    { background: #E6F4EA; border-color: #A6D9B6; color: #1E4620; }
+.banner-error { background: #FDECEA; border-color: #F5B5B0; color: #7F1D1D; }
+.banner ul { margin: 0.5rem 0 0; padding-left: 1.25rem; }
+
+/* --- Track list --- */
+.track-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.track-row {
+    display: grid;
+    grid-template-columns: 2.25rem 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    background: #fff;
+}
+
+.track-row.dragging { opacity: 0.45; }
+.track-row.drop-target { border-color: var(--primary-color); box-shadow: 0 0 0 2px rgba(0,123,255,0.2); }
+
+.track-index {
+    font-variant-numeric: tabular-nums;
+    color: var(--muted-color);
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: grab;
+}
+
+.track-main { min-width: 0; }
+.track-main input[type="text"] { padding: 0.5rem; }
+
+.track-facts {
+    font-size: 0.8rem;
+    color: var(--muted-color);
+    font-family: var(--mono-family);
+    white-space: nowrap;
+}
+
+.track-buttons { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+
+.track-buttons .btn {
+    min-height: 40px;
+    min-width: 40px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+.track-row.pending-remove { opacity: 0.5; background: #fff5f5; border-color: #F5B5B0; }
+.track-row.pending-remove .track-main input[type="text"] { text-decoration: line-through; }
+.track-row .removal-note { display: none; font-size: 0.8rem; color: var(--danger-color); }
+.track-row.pending-remove .removal-note { display: block; }
+
+/* --- Upload widget --- */
+.file-summary {
+    margin-top: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--muted-color);
+}
+.file-summary ul { margin: 0.35rem 0 0; padding-left: 1.25rem; }
+.file-summary li { overflow-wrap: anywhere; }
+
+/* --- Footer --- */
+footer {
+    height: 40px;
+    background-color: var(--footer-color);
+    margin-top: 2rem;
+}
+
+/* --- Toast --- */
+#toast {
+    position: fixed;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: min(90vw, 640px);
+    background-color: var(--toast-bg);
+    color: var(--toast-text);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: top 0.5s ease-in-out;
+    z-index: 2000;
+}
+#toast.show { top: 20px; }
+#toast.toast-error { background-color: var(--toast-error-bg); }
+
+/* --- Phones --- */
+@media (max-width: 600px) {
+    main { padding: 1.25rem 0.9rem 2.5rem; }
+    .panel { padding: 1rem; }
+    .sticky-header { padding: 0 0.75rem; }
+    .sticky-header nav a { padding: 0.5rem 0.4rem; font-size: 0.95rem; }
+    .btn { padding: 0.6rem 0.9rem; }
+
+    .playlist-grid { grid-template-columns: 1fr; }
+
+    .track-row {
+        grid-template-columns: 2rem 1fr;
+        row-gap: 0.5rem;
+    }
+    .track-index { align-self: start; padding-top: 0.6rem; }
+    .track-facts { grid-column: 2; }
+    .track-buttons { grid-column: 2; justify-content: flex-start; }
+    .track-buttons .btn { flex: 1 1 auto; }
+    .removal-note { grid-column: 2; }
+
+    .card-actions .btn, .inline-form .btn { flex: 1 1 auto; }
+}

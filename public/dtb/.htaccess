@@ -1,0 +1,25 @@
+Options -Indexes
+DirectoryIndex index.html index.php
+
+# Playlist records live under data/ as JSON. Nothing here is ever meant to be
+# fetched directly, and <Directory> is not allowed in .htaccess, so deny by name.
+<FilesMatch "\.json$">
+    Require all denied
+</FilesMatch>
+
+# Same password file the rest of the site's admin uses, so there is only one login.
+<FilesMatch "^(admin|edit)\.php$">
+    AuthType Basic
+    AuthName "Restricted Area"
+    AuthUserFile /home/aryncalhoun/htpasswd
+    Require valid-user
+</FilesMatch>
+
+# Shared playlists are plain static pages at <token>/<playlist-name>/index.html,
+# served by DirectoryIndex above. No rewriting, so this works in any subdirectory.
+# They are unlisted rather than secret, so keep them out of search results.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set X-Robots-Tag "noindex, nofollow, noarchive"
+    </FilesMatch>
+</IfModule>
